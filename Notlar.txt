@@ -16,5 +16,6 @@ Context c= new Context ifadesi Class genelinde tanýmlanýr ve tüm class içerisind
 using var = new Context ifadesi ise sadece yazýlý olan method içerisinde kullanýlýr ve her method için tanýmlanmak zorundadýr.
 
 Bir sýnýfýn içerisinde kalýtsal yoldan bir interface miras alýnýyorsa o sýnýfa o interfaceyi imlemente etmek gerekir.
+CTRL+Shift+W kýsayoluyla "View in Browser" çalýþmakta ya da Views klasörü altýnda ilgili sayfaya sað click yaparakta "View in Browser" 'ý açabilirsiniz. Visual Studio 2022 çalýþma mantýðý bu þekilde.
 
 1.Görev: Projenin Githupa yüklenmesi :Tamam.
