@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public void TUpdate(Writer t)
         {
-            _writerDal.Update();
+            _writerDal.Update(t);
         }
     }
 }
