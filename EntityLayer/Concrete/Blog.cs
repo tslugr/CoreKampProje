@@ -17,5 +17,12 @@ namespace EntityLayer.Concrete
         public string BlogImage { get; set; }
         public DateTime BlogCreateDate { get; set; }
         public string BlogStotus { get; set; }
+
+        //Blog Kategori İlişkisi
+        public int CategoryID { get; set; }
+        public Category  Category { get; set; }
+        //blog yorum ilişkisi
+        public List<Comment> Comments { get; set; }
+
     }
 }

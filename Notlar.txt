@@ -1,0 +1,20 @@
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+Yukarýdaki paketlerin DataAccessLayer ve UI Katmanýna Kurulmasý gerekmektedir kurulu deðilse migration iþlemleri yapýlamaz
+
+add-migration mig01 mig01 adýnda migration oluþturur
+update-database oluþturulan migrationu veri tabanýna yansýtýr.
+List ile ICollection arasýndaki fark:
+ICollection" bir interface iken "List" ise bir class týr. "ICollection", aralarýnda "List" de bulunan ve "ICollection" interfaceini implemente eden herhangi bir classý veya bu classlardan türetilen herhangi bir classý alabilirken, "List" sadece kendini ve List den türetilen sýnýflarý kabul eder.
+
+DRY (Don’t Repeat Yourself) prensibine göre kod içindeki her parçacýðýn kendine özelleþtirilmiþ bir yapýsý, görevi olmalýdýr.
+Aksi halde bir deðiþiklik yapýlmasý gerektiðinde o parçadan etkilenen diðer parçalarda da deðiþiklik yapýlmasý gerekir ki bu da çoðu zaman karmaþýklýða sebep olur. Kod tekrarýndan kaçýnýlmalý, tekrarlamalar soyutlama yolu ile aþýlmalýdýr.
+
+Context c= new Context ifadesi Class genelinde tanýmlanýr ve tüm class içerisinde kullanýlýr. 
+using var = new Context ifadesi ise sadece yazýlý olan method içerisinde kullanýlýr ve her method için tanýmlanmak zorundadýr.
+
+Bir sýnýfýn içerisinde kalýtsal yoldan bir interface miras alýnýyorsa o sýnýfa o interfaceyi imlemente etmek gerekir.
+
+1.Görev: Projenin Githupa yüklenmesi :Tamam.

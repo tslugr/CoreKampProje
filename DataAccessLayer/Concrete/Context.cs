@@ -14,7 +14,7 @@ namespace DataAccessLayer.Concrete
         //aşağıdaki kod veri tabanı bağlantı kodudur DbContext den miras alır.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("servet=UTNTB;database=CoreBlogDb; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=UTNTB;database=CoreBlogDb; integrated security=true;");
         }
 
         /*
