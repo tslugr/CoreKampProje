@@ -19,3 +19,12 @@ Bir sýnýfýn içerisinde kalýtsal yoldan bir interface miras alýnýyorsa o sýnýfa o
 CTRL+Shift+W kýsayoluyla "View in Browser" çalýþmakta ya da Views klasörü altýnda ilgili sayfaya sað click yaparakta "View in Browser" 'ý açabilirsiniz. Visual Studio 2022 çalýþma mantýðý bu þekilde.
 
 1.Görev: Projenin Githupa yüklenmesi :Tamam.
+
+Ödev 
+Eager Loading: nesneyi ihtiyaç anýndan hemen önce oluþturur ve bekletir. Linq sorgusu çalýþtýrýldýðýnda verilerin tamamýný yükler ve hafýzaya alýr. Daha ucuz maliyetlidir.
+Lazy Loading : Bu yöntemde veriler sorguya baðlý olarak çekilir ancak veri setinin içindeki tüm datalarý yüklemek yerine verilerin çaðrýldýkça otomatik yüklenmesi söz konusudur. Daha pahalý iþlemdir.
+
+öncelikle interface in default durumu public deðil. classlarýn da private deðil. hepsi internaldýr. internal tipinde bir interface'e ayný katman içinden eriþirsiniz fakat farklý katmandan eriþemezsiniz. baþýna public yazmazsa controller katmanýndan bu interfacelere eriþemez. default hali public olan þey ise interfacein kendisi deðil metodlarý (imzalarý) dýr.
+
+Ödev
+MVC’nin önceki sürümlerinde birden fazla alanda kullanmak istediðimiz bileþenleri genellikle Partial View olarak tasarlar ve [ChildActionOnly] attribute ile birlikte tek baþlarýna çaðrýlmalarýný engellerdik. Bu yapý bizim için büyük kolaylýk saðlardý. Asp.Net Core ile birlikte [ChildActionOnly] attribute kullanýmý kaldýrýlmýþ ve yeni ViewComponent yapýsý geliþtirilmiþtir. ViewComponentler dýþarýdan Http istek ile doðrudan ulaþýlamazlar. Ve view components'lar partial view'e  çok benzer, ancak partial view'e kýyasla çok daha güçlüdür. view components'lar model baðlama kullanmaz. Ancak, yalnýzca onu çaðýrdýðýmýzda saðlanan verilerle çalýþýr. partial view  gibi, view componentsi de controller'lara baðlý deðildir. Bileþenin modelini ve ustura biçimlendirme görünüm sayfasýný geliþtirmek için mantýðý uygulamak için kendi sýnýfýna sahiptir. En önemli þey, View Components'ýn baðýmlýlýk enjeksiyonunu kullanabilmesidir, bu da onlarý çok güçlü ve test edilebilir kýlar.

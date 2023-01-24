@@ -38,6 +38,10 @@ namespace BusinessLayer.Concrete
             return _commentDal.GetListAll();
 
         }
+        public List<Comment> TGetList(int id)
+        {
+            return _commentDal.GetListAll(x => x.BlogID==1);
+        }
 
         public void TUpdate(Comment t)
         {

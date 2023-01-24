@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         public string BlogThumbnailImage { get; set; }
         public string BlogImage { get; set; }
         public DateTime BlogCreateDate { get; set; }
-        public string BlogStotus { get; set; }
+        public bool BlogStatus { get; set; }
 
         //Blog Kategori İlişkisi
         public int CategoryID { get; set; }

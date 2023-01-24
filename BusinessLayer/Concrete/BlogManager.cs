@@ -18,6 +18,11 @@ namespace BusinessLayer.Concrete
             _blogDal = blogDal;
         }
 
+        public List<Blog> GetBlogListWithCategory()
+        {
+            return _blogDal.GetListWithCategory();
+        }
+
         public void TAdd(Blog t)
         {
             _blogDal.Insert(t);
@@ -32,7 +37,10 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.GetByID(id);
         }
-
+        public List<Blog> GetBlogByID(int id)
+        {
+            return _blogDal.GetListAll(x => x.BlogID == id);
+        }
         public List<Blog> TGetList()
         {
             return _blogDal.GetListAll();

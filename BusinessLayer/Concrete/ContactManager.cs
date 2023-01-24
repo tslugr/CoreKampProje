@@ -38,6 +38,8 @@ namespace BusinessLayer.Concrete
             return _contactDal.GetListAll();
         }
 
+      
+
         public void TUpdate(Contact t)
         {
             _contactDal.Update(t);
