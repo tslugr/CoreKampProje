@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
         }
         public List<Comment> TGetList(int id)
         {
-            return _commentDal.GetListAll(x => x.BlogID==1);
+            return _commentDal.GetListAll(x => x.BlogID==id);
         }
 
         public void TUpdate(Comment t)

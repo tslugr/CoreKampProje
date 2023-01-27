@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreKampProje.ViewComponents
+namespace CoreKampProje.Controllers
 {
-    public class CommentList : ViewComponent
+    public class LoginController : Controller
     {
-        public IViewComponentResult Invoke()
+        public IActionResult Index()
         {
             return View();
         }

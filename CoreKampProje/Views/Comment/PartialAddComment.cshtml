@@ -3,13 +3,13 @@
 <div class="comment-top">
     <h4>Yorum Yap</h4>
     <div class="comment-bottom">
-        <form action="#" method="post">
-            <input class="form-control" type="text" name="Name" placeholder="Ad Soyad" required="">
-            <input class="form-control" type="email" name="Email" placeholder="Mail" required="">
+        <form action="/Comment/PartialAddComment/" method="post">
+            <input class="form-control" type="text" name="CommentUserName" placeholder="Ad Soyad" required="">
+            <input class="form-control" type="text" name="CommentTitle" placeholder="Konu" required="">
 
-            <input class="form-control" type="text" name="Subject" placeholder="Konu" required="">
+            @*<input class="form-control" type="text" name="Subject" placeholder="Konu" required="">*@
 
-            <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
+            <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
             <button type="submit" class="btn btn-primary submit">Gönder</button>
         </form>
     </div>

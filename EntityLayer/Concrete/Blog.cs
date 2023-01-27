@@ -21,8 +21,14 @@ namespace EntityLayer.Concrete
         //Blog Kategori İlişkisi
         public int CategoryID { get; set; }
         public Category  Category { get; set; }
+        //Blog Yazar İlişkisi
+        public int WriterID { get; set; }
+        public Writer Writer { get; set; }
         //blog yorum ilişkisi
         public List<Comment> Comments { get; set; }
+
+   
+ 
 
     }
 }

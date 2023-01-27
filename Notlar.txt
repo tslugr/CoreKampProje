@@ -28,3 +28,10 @@ Lazy Loading : Bu yöntemde veriler sorguya baðlý olarak çekilir ancak veri setin
 
 Ödev
 MVC’nin önceki sürümlerinde birden fazla alanda kullanmak istediðimiz bileþenleri genellikle Partial View olarak tasarlar ve [ChildActionOnly] attribute ile birlikte tek baþlarýna çaðrýlmalarýný engellerdik. Bu yapý bizim için büyük kolaylýk saðlardý. Asp.Net Core ile birlikte [ChildActionOnly] attribute kullanýmý kaldýrýlmýþ ve yeni ViewComponent yapýsý geliþtirilmiþtir. ViewComponentler dýþarýdan Http istek ile doðrudan ulaþýlamazlar. Ve view components'lar partial view'e  çok benzer, ancak partial view'e kýyasla çok daha güçlüdür. view components'lar model baðlama kullanmaz. Ancak, yalnýzca onu çaðýrdýðýmýzda saðlanan verilerle çalýþýr. partial view  gibi, view componentsi de controller'lara baðlý deðildir. Bileþenin modelini ve ustura biçimlendirme görünüm sayfasýný geliþtirmek için mantýðý uygulamak için kendi sýnýfýna sahiptir. En önemli þey, View Components'ýn baðýmlýlýk enjeksiyonunu kullanabilmesidir, bu da onlarý çok güçlü ve test edilebilir kýlar.
+
+NOT: Ekleme iþlemi yapýlýrken,httpget ve httppost attributlerinin tanýmlandýðý metotlarýn isimleri ayný olmak zorundadýr.
+
+HttpGet:Sayfa yklenince
+HttPost : Sayfada buton tetiklenince
+
+Mesela HttpGet Attribute komutu sayfada kategorize veya benzeri iþlemler kullanýrken sayfa yüklendiði anda listelenmesi istenen niteliklerde kullanýlabilir.
