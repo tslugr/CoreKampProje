@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreKampProje.Controllers
 {
+    [AllowAnonymous]
     public class WriterController : Controller
     {
       
@@ -18,6 +19,15 @@ namespace CoreKampProje.Controllers
         public IActionResult WriterProfile()
         {
             return View();
+        }
+
+        public PartialViewResult WriterNavbarParital()
+        {
+            return PartialView();
+        }
+        public PartialViewResult WriterFooterPartial()
+        {
+            return PartialView();
         }
     }
 }
