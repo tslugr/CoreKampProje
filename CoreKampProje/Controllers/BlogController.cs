@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreKampProje.Controllers
 {
+    [AllowAnonymous]//sen authorize dışında ol
     public class BlogController : Controller
     {
         BlogManager blogManager = new BlogManager(new EfBlogDal());
@@ -23,5 +25,7 @@ namespace CoreKampProje.Controllers
             var values = blogManager.GetBlogByID(id);
             return View(values);
         }
+
+
     }
 }

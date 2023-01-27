@@ -35,3 +35,8 @@ HttpGet:Sayfa yklenince
 HttPost : Sayfada buton tetiklenince
 
 Mesela HttpGet Attribute komutu sayfada kategorize veya benzeri iþlemler kullanýrken sayfa yüklendiði anda listelenmesi istenen niteliklerde kullanýlabilir.
+
+Authentication="kimlik doðrulamasý"
+Authorization="kimlik yetkikendirme"
+Claim=""kullanýcý hakkýnda bilgiler tutan yapýlar diyebiliriz."
+Kýsaca Claim anlatmamýz gerekirse Örneðin:Youtobe'a giriþ yaptýk ve Youtobe bize izleyici rolü tanýmladý,bu tanýmlama ile beraber istediðmiz video'yu izleyebiliyoruz.Ama diyelim ki yaþýmýz 18'den küçük ve bazý korku gerilim videolarý +18 sýnýr konulmasý gerekiyor,Ýþte burada yaþ aralýðýný ölçebilmek için ilgili kullanýcýlarýn yaþ deðerlerinin claim olarak atanmasý saðlanmalý ve claim bazlý bir yetkilendirme yapýlmalýdýr.
