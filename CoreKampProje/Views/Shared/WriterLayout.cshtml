@@ -102,14 +102,16 @@
             @await Html.PartialAsync("~/Views/Writer/WriterNavbarParital.cshtml")
             <!-- partial -->
             <div class="main-panel">
-                @RenderBody()
-                <!-- content-wrapper ends -->
-                <!-- partial:~/writer/partials/_footer.html -->
-                @await Html.PartialAsync("~/Views/Writer/WriterFooterPartial.cshtml")
-                <!-- partial -->
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:~/writer/partials/_footer.html -->
+                    @await Html.PartialAsync("~/Views/Writer/WriterFooterPartial.cshtml")
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
             </div>
-            <!-- main-panel ends -->
-        </div>
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
