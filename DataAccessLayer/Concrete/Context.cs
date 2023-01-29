@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context:DbContext
+    public class Context : DbContext
     {
         //Veritabanı bağlantısı icin entityframework 4 adet paketini dağil ettikten sonra bu sınıfı oluşturduk
         //aşağıdaki kod veri tabanı bağlantı kodudur DbContext den miras alır.
@@ -32,6 +32,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Writer> Writers { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
+        public DbSet<BlogRayting> BlogRaytings { get; set; }
 
     }
 }
