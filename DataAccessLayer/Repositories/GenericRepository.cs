@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,15 @@ namespace DataAccessLayer.Repositories
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
+
+        Context context = new Context();
+        DbSet<T> _object;
+        public GenericRepository()
+        {
+            _object = context.Set<T>();
+        }
+
+
         public void Delete(T t)
         {
             using var c = new Context();
@@ -49,6 +59,16 @@ namespace DataAccessLayer.Repositories
             using var c = new Context();
             c.Update(t);
             c.SaveChanges();
+        }
+
+        public List<T> List(Expression<Func<T, bool>> filter)
+        {
+            return _object.Where(filter).ToList();
+        }
+
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            return _object.SingleOrDefault(filter);//bir dizide ya da listede sadece bir tane ifade döndüren linq 
         }
     }
 }

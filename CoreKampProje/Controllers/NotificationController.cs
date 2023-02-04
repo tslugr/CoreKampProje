@@ -1,20 +1,28 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreKampProje.ViewComponents.Writer
+namespace CoreKampProje.Controllers
 {
-    public class WriterNotification : ViewComponent
+    public class NotificationController : Controller
     {
         NotificationManager notificationManager = new NotificationManager(new EfNotificationDal());
-        public IViewComponentResult Invoke()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult AllNotification()
         {
             var values = notificationManager.TGetList();
             return View(values);
+
         }
     }
 }
