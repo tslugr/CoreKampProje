@@ -14,21 +14,15 @@ namespace CoreKampProje.ViewComponents.Writer
         WriterManager writerManager = new WriterManager(new EfWriterDal());
 
 
-        Context context = new Context();
+
 
 
         public IViewComponentResult Invoke()
-        {
-
-
-            //var userName = User.Identity.Name;
-            //var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            //var writerID = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            //var values = writerManager.GetBlogWriterById(writerID);
-            //////var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            //ViewBag.veri = userName;
-
-            var values = writerManager.GetWriterByID(1);
+        {       
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = writerManager.GetWriterByID(writerID);
             return View(values);
         }
     }

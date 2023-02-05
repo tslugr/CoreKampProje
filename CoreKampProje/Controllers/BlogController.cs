@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CoreKampProje.Controllers
 {
-    [AllowAnonymous]//sen authorize dışında ol
+
     public class BlogController : Controller
     {
         private CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
@@ -35,7 +35,10 @@ namespace CoreKampProje.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var values =blogManager.GetBlogListWithCategoryByWriter(1);
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values =blogManager.GetBlogListWithCategoryByWriter(writerID);
             return View(values);
         }
 
@@ -57,14 +60,16 @@ namespace CoreKampProje.Controllers
         {
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(blog);
-           
-          
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
             if (results.IsValid)
             {
 
                 blog.BlogStatus = true;
                 blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.WriterID = 1;
+                blog.WriterID = writerID;
                 blogManager.TAdd(blog);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -102,6 +107,14 @@ namespace CoreKampProje.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
+
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            blog.WriterID = writerID;
+            blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToLongDateString());
+            blog.BlogStatus = true;
+
             blogManager.TUpdate(blog);
             return RedirectToAction("BlogListByWriter", "Blog");
         }

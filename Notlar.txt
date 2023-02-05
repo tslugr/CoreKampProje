@@ -40,3 +40,48 @@ Authentication="kimlik doðrulamasý"
 Authorization="kimlik yetkikendirme"
 Claim=""kullanýcý hakkýnda bilgiler tutan yapýlar diyebiliriz."
 Kýsaca Claim anlatmamýz gerekirse Örneðin:Youtobe'a giriþ yaptýk ve Youtobe bize izleyici rolü tanýmladý,bu tanýmlama ile beraber istediðmiz video'yu izleyebiliyoruz.Ama diyelim ki yaþýmýz 18'den küçük ve bazý korku gerilim videolarý +18 sýnýr konulmasý gerekiyor,Ýþte burada yaþ aralýðýný ölçebilmek için ilgili kullanýcýlarýn yaþ deðerlerinin claim olarak atanmasý saðlanmalý ve claim bazlý bir yetkilendirme yapýlmalýdýr.
+
+IsRequired: ilgili alanýn zorunluluðunu ifade eder. Bununla beraber IsOptional  opsiyonel olduðunu da belirtebiliriz.
+OnDelete yöntemi içinde 3 paremetre; (Silinme Durumunda)
+Cascade: Baðýmlý olanlar siliniyor
+Restrict: Baðýmlý olanlar etkilenmiyor
+SetNull: Deðer NULL olarak deðiþtiriliyor.
+
+
+Arkadaþlar gelen mesajlarda 2 dakika önce, 2 saat önce vb mesajlarýný görmek istiyorsanýz aþaðýdaki 3 adýmý yapabilirsiniz.
+
+1. Adým -> Model sýnýfa bir class oluþturup içerisine: 
+
+    public static class Time
+        {
+        public static string Zaman(this DateTime date)
+        {
+            //Bugünden gelen tarihinin farkýný alýyorum
+            var timeSpan = DateTime.Now - date;
+            //60 saniyeden küçükse 
+            if (timeSpan <= TimeSpan.FromSeconds(60))
+                return string.Format("{0} saniye önce", timeSpan.Seconds);
+            //60 dakikadan küçükse
+            else if (timeSpan <= TimeSpan.FromMinutes(60))
+                return timeSpan.Minutes > 1 ? string.Format("{0} dakika önce", timeSpan.Minutes) : "yaklaþýk bir dakika önce";
+            //24 saatten küçükse
+            else if (timeSpan <= TimeSpan.FromHours(24))
+                return timeSpan.Hours > 1 ? String.Format("{0} saat önce", timeSpan.Hours) : "yaklaþýk bir saat önce";
+            //30 günden küçükse
+            else if (timeSpan <= TimeSpan.FromDays(30))
+                return timeSpan.Days > 1 ? String.Format("{0} gün önce", timeSpan.Days) : "dün";
+            //365 günden küçükse
+            else if (timeSpan <= TimeSpan.FromDays(365))
+                return timeSpan.Days > 30 ? String.Format("{0} ay önce", timeSpan.Days / 30) : "yaklaþýk bir ay önce";
+            //Yýl 
+            return timeSpan.Days > 365 ? String.Format("{0} yýl önce", timeSpan.Days / 365) : "yaklaþýk bir yýl önce";
+        }
+    }
+
+2. Adým -> Daha sonra kullanmak istediðimiz yerde tanýmlýyoruz.
+
+@using CoreProje.Models
+
+3. Adým -> Zaman belirten item varsa .Zaman() fonksiyonunu ekliyoruz.
+
+Örneðin: @item.MessageDate.Zaman()

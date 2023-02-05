@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreKampProje.Controllers
 {
-    [AllowAnonymous]//sen authorize dışında ol
+    //[AllowAnonymous]//sen authorize dışında ol
 
     public class DashboardController : Controller
     {

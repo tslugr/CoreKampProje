@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using CoreKampProje.Models;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -14,12 +15,17 @@ using System.Threading.Tasks;
 
 namespace CoreKampProje.Controllers
 {
-    [AllowAnonymous]
+  
     public class WriterController : Controller
     {
         WriterManager writerManager = new WriterManager(new EfWriterDal());
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.v = usermail;
+            Context c = new Context();
+            var writerName = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName;
             return View();
         }
 
@@ -39,8 +45,10 @@ namespace CoreKampProje.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-
-            var writervalues = writerManager.TGetByID(1);
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var writervalues = writerManager.TGetByID(writerID);
             return View(writervalues);
         }
 
