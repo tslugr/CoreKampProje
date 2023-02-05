@@ -42,5 +42,17 @@ namespace BusinessLayer.Concrete
         {
             _categoryDal.Update(t);
         }
+
+        public bool UpdateRecordState(int id, bool state)
+        {
+            var recordExities = _categoryDal.GetByID(id);
+            if (recordExities != null)
+            {
+                recordExities.CategoryStatus = state;
+                _categoryDal.Update(recordExities);
+            }
+
+            return false;
+        }
     }
 }
