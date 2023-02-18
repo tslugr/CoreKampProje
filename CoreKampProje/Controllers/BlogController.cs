@@ -20,25 +20,32 @@ namespace CoreKampProje.Controllers
         private CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
         BlogManager blogManager = new BlogManager(new EfBlogDal());
         Context context = new Context();
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = blogManager.GetBlogListWithCategory();
             return View(values);
         }
-
+        [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.i = id;
             var values = blogManager.GetBlogByID(id);
+            var commentNumber = context.Comments.Where(x => x.BlogID == id).Count();
+            var blogScore = context.Comments.Where(x => x.BlogID == id).Select(y => y.BlogScore).FirstOrDefault();
+            ViewBag.commentNumber = commentNumber;
+            ViewBag.blogScore = blogScore;
             return View(values);
         }
 
         public IActionResult BlogListByWriter()
         {
-            var usermail = User.Identity.Name;
-            Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var values =blogManager.GetBlogListWithCategoryByWriter(writerID);
+            //Identity ile writer tablosunda eşleşen kullanıcılara aynı maili verdim
+            var userName = User.Identity.Name;
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var values = blogManager.GetBlogListWithCategoryByWriter(writerId);
             return View(values);
         }
 
@@ -60,18 +67,20 @@ namespace CoreKampProje.Controllers
         {
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(blog);
-            var usermail = User.Identity.Name;
-            Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-
+            var userName = User.Identity.Name;
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             if (results.IsValid)
             {
 
                 blog.BlogStatus = true;
                 blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.WriterID = writerID;
+                blog.WriterID = writerId;
                 blogManager.TAdd(blog);
                 return RedirectToAction("BlogListByWriter", "Blog");
+
+
+
             }
             else
             {
@@ -107,13 +116,6 @@ namespace CoreKampProje.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
-
-            var usermail = User.Identity.Name;
-            Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            blog.WriterID = writerID;
-            blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToLongDateString());
-            blog.BlogStatus = true;
 
             blogManager.TUpdate(blog);
             return RedirectToAction("BlogListByWriter", "Blog");

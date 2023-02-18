@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Writer
+﻿@model UserUpdateViewModel
 @{
     ViewData["Title"] = "WriterEditProfile";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
@@ -13,23 +13,23 @@
             <form class="forms-sample" method="post">
                 <div class="form-group">
                     <label for="exampleInputName1">Yazar Ad Soyad</label>
-                    <input type="text" asp-for="@Model.WriterName" class="form-control" />
+                    <input type="text" asp-for="@Model.namesurname" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputName1">Kullanıcı Adı</label>
-                    <input type="text" asp-for="@Model.WriterAbout" class="form-control" />
+                    <input type="text" asp-for="@Model.username" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Mail </label>
-                    <input type="text" asp-for="@Model.WriterMail" class="form-control" />
+                    <input type="text" asp-for="@Model.mail" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Yeni Şifreniz </label>
-                    <input type="text" asp-for="@Model.WriterPassword" class="form-control" />
+                    <input type="text" asp-for="@Model.password" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Resim Yolu </label>
-                    <input type="text" asp-for="@Model.WriterImage" class="form-control" />
+                    <input type="text" asp-for="@Model.imageurl" class="form-control" />
                 </div>
 
                 <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>

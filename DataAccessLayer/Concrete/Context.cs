@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AppUser,AppRole,int>
     {
         //Veritabanı bağlantısı icin entityframework 4 adet paketini dağil ettikten sonra bu sınıfı oluşturduk
         //aşağıdaki kod veri tabanı bağlantı kodudur DbContext den miras alır.
@@ -52,5 +53,7 @@ namespace DataAccessLayer.Concrete
 
         public DbSet<Message> Messages { get; set; }
         public DbSet<Message2> Message2s { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
     }
 }
